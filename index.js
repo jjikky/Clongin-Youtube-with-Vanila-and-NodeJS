@@ -14,8 +14,15 @@ function handleProfile(req,res){
     res.send("profile");
 } */
 
+const betweenHome = (req,res,next) => {
+    console.log("between");
+    next();  // 다음 미들웨어 호출
+};
+
+
+
 app.get('/', handleHome);
 
 app.get("/profile", handleProfile);
-
+app.use(betweenHome);
 app.listen(PORT, handleListening);
