@@ -1,0 +1,32 @@
+loggin에 도움을 주는 미들웨어 morgan 설치  
+npm install morgan
+app.use(morgan("tiny"));    >>    ex : GET/profile 304 - - 2.873ms          tiny대신 dev사용하면 304부분에 하이라이트
+
+app.use(morgan("combined"));   
+>>    ex :   어떤 종류의 접속인지 , 어떤 브라우저인지
+::1 - - [21/Jan/2021:10:42:34 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like 
+Gecko) Chrome/88.0.4324.96 Safari/537.36"
+
+/*********************************************************************/
+
+보안에 도움을 주는 미들웨어 helmet 설치
+npm install helmet
+import helmet from "helmet";
+app.use(helmet());
+
+/********************************************************************/
+미들웨어가 res.send를 실행하는 함수를 발동하면 next가 일어나지 않는다.
+
+/*********************************************************************/
+body-parser
+아이디 비번 form을 입력해서 전송하면 특정한 형태로 서버에 의해 받아져야만 한다.
+form을 받았을 때, 그 데이터를 갖고있는 request object에 접근할 수 있게 도와주는 미들웨어
+npm install body-parser
+import bodyParser from "body-parser";
+
+
+/*********************************************************************/
+cookie-parser
+session을 다루기 위해 쿠키에 유저정보를 저장
+npm install cookie-parser
+import cookieParser from "cookie-parser";
