@@ -1,3 +1,0 @@
-m : model (data : db)
-v : view (data의 생김새 : template) 
-c : control (data를 찾는 함수 : function)
