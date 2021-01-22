@@ -8,9 +8,9 @@ import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
 import routes from "./routes";
 
-
 const app = express();
 
+app.set('view engine', "pug");
 app.use(cookieParser());   // How the server understands the cookies it receives from users
 app.use(bodyParser.json());     // How the server understands the data it receives from users. Using .json() to understand not only form but also json
 app.use(bodyParser.urlencoded({extended: true}));
