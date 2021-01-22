@@ -8,3 +8,13 @@ html 파일을 저장해야 하는 폴더의 기본 값은 프로젝트의 작�
 //if you give the name of the template file as an argument to the render() function,
 //this function will show after finding the template file with the file name home makeover pug in the folder
 export const home = (req, res) => res.render("home"); 
+
+
+<!-- extension(확장) : 이 layout을 template에서 확장하겠다는 뜻(이 코드들도 사용하고, 추가적인 것을 더하겠다는 뜻) --> 
+// main.pug 코드 전체를 복사하는것과 같다.
+extends layouts/main
+// pug가 이 코드를 일반적인 html 코드로 변환  :   <p>hello<p>
+
+// main.pug의 block content 부분에 아래 코드가 들어간다.
+block content     
+    p Hello home!           
