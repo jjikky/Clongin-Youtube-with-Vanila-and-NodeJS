@@ -1,7 +1,10 @@
 header.header
     .header_column
         a(href=routes.home)
-            i.fab.fa-youtube
+        i.fab.fa-youtube
+    .header_column
+        form(action=routes.search, method="get")
+            input(type="text", placeholder="Search by term...", name="term")
     .header_column
         ul                           <!-- if not Logined : join and login should be shown in the header-->
             li                       <!-- if Logined : logout, upload video, profile should be shown in the header-->
