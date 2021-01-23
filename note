@@ -1,6 +1,6 @@
 Add the information in the controller to the template
 
 1. How to add to the whole template
-middlewares.js > localsMiddleware()
+middlewares.js > localsMiddleware()   
 
 2. How to add to only one template
