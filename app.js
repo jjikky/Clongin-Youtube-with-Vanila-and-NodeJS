@@ -12,6 +12,10 @@ import routes from "./routes";
 const app = express();
 
 app.use(helmet());        // For security
+app.use(function(req, res, next) {                // for get video
+    res.setHeader("Content-Security-Policy", "script-src 'self' https://archive.org");
+    return next();
+    });
 app.set('view engine', "pug");
 app.use(cookieParser());   // How the server understands the cookies it receives from users
 app.use(bodyParser.json());     // How the server understands the data it receives from users. Using .json() to understand not only form but also json

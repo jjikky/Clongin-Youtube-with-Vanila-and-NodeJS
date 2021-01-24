@@ -1,6 +1,10 @@
+import {videos} from "../db"
+
 //if you give the name of the template file as an argument to the render() function,
 //this function will show after finding the template file with the file name home makeover pug in the folder
-export const home = (req, res) => res.render("home", {pageTitle: 'Home'}); 
+export const home = (req, res) => {
+    res.render("home", {pageTitle: 'Home', videos});
+} 
 export const search = (req, res) => {
     const {
         query: {term: searchingBy}
