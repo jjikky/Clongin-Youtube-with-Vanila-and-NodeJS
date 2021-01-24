@@ -1,4 +1,3 @@
-import {videos} from "../db"
 import routes from "../routes";
 
 //if you give the name of the template file as an argument to the render() function,
