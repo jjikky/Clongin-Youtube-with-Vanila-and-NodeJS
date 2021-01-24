@@ -1,4 +1,0 @@
-videoBlock.pug
-
-mixin videoBlock(video = {})      // 이 mixin에 인자가 입력되면, 그 객체의 이름을 video라고 한거야.
-    h1=video.title                // 객체가 mixin에 입력되면, 그 객체의 title을 받아와서 화면에 표시
