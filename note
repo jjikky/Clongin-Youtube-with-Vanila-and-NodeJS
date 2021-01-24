@@ -1,7 +1,0 @@
-npm install mongoose
-
-mongoDB = database, mongoose = db와 연결하게 해주는것
-
-npm install dotenv
-
-doteenv.config라는 함수로 .env파일 안에 있는 정보를 불러올수 있다.
