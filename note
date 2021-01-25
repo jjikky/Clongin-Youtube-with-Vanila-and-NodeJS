@@ -1,13 +1,11 @@
-쿠키 : 우리가 브라우저에 저장할 수 있는 것들
-passport: 쿠키생성, 브라우저에 저장, 유저에게 해당 쿠키를 준다,
+postJoin은 e-mail, password등 정보들을 받아서 사용자를 가입시키고
+(이건 middleware니까) next()가 호출되어서 다음 것으로 가고, 같은 정보를 전달하게 되는데,
+다음것인 postLogin은 사용자를 로그인 시켜주는 것
 
-npm install passport-local-mongoose
+npm install express-session
 
-
-passport-local : username과 password를 쓰는 사용자 인증 방식(strategy)
->> npm i passport passport-local
-
-serializeUser : 어떤 정보를 쿠키에게 주느냐(어떤 field가 쿠키에 포함될 것인지 알려주는 역할)
-                쿠키는 아주 작아야하고 민감한 정보 담으면 안된다. 누군가 접근 가능
-
-deserializeUser : 어느 사용자인지 어떻게 찾는가 (serializeUser에서 받은 쿠키의 정보를 어떻게 사용자로 전환하는가)
+express는 session을 이용해서 쿠키를 가질 수 있게 되고
+passport를 통해서 우린 session을 이용한다 (session이 가진 쿠키를)
+session은 쿠키를 해독해 그리고 그 ID는 passport로 넘어가고 deserializeUser 함수 실행(사용자 식별)
+passport는 방금 찾은 그 사용자를 middleware나 routes의 request object에 할당하게 돼
+그래서 어느 route 에서든 로그인한 사용자가 누구인지 체크 가능

@@ -6,7 +6,7 @@ import routes from "../routes";
 const globalRouter = express.Router();
 
 globalRouter.get(routes.join, getJoin);
-globalRouter.post(routes.join, postJoin);
+globalRouter.post(routes.join, postJoin, postLogin);  // To login immediately after join
 
 globalRouter.get(routes.login, getLogin);
 globalRouter.post(routes.login, postLogin);
