@@ -5,6 +5,8 @@ import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import passport from "passport";
 import session from "express-session";
+import MongoStore from "connect-mongo";
+import mongoose from "mongoose";
 import { localsMiddleware } from "./middlewares";
 import routes from "./routes";
 import userRouter from "./routers/userRouter";
@@ -14,6 +16,8 @@ import globalRouter from "./routers/globalRouter";
 import "./passport";
 
 const app = express();
+
+const CokieStore = MongoStore(session)
 
 app.use(helmet());        // For security
 app.use(function (req, res, next) {                // for get video
@@ -31,7 +35,8 @@ app.use(
     session({
         secret: process.env.COOKIE_SECRET,    // For encrypt Session ID
         resave: true,
-        saveUninitialized: false
+        saveUninitialized: false,
+        store: new CokieStore({ mongooseConnection: mongoose.connection })
     })
 )
 app.use(passport.initialize());  // get cookie from cookieParser, passport initialize and find User corresponding to cookie
