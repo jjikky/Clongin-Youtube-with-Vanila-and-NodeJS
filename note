@@ -1,1 +1,3 @@
-express.static()   :  주어진 directory에서 file을 전달하는 middleware function
+videos = await Video.find({ title: { $regex: searchingBy, $options: "i" } }); 
+// get Video that title include searchingBy, regular expression
+$options: "i"   means less sensitive (대소문자 구분x)
