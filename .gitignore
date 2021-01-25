@@ -118,3 +118,4 @@ dist
 # FuseBox cache
 package-lock.json
 uploads
+static

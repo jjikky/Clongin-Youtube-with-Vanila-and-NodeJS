@@ -4,7 +4,7 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import { localsMiddleware } from "./middlewares";
-import userRouter from "./routers/userRouter";   
+import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
 import routes from "./routes";
@@ -12,15 +12,16 @@ import routes from "./routes";
 const app = express();
 
 app.use(helmet());        // For security
-app.use(function(req, res, next) {                // for get video
+app.use(function (req, res, next) {                // for get video
     res.setHeader("Content-Security-Policy", "script-src 'self' https://archive.org");
     return next();
-    });
+});
 app.set('view engine', "pug");
-app.use("/uploads", express.static("uploads")); 
+app.use("/uploads", express.static("uploads"));
+app.use("/static", express.static("static"));
 app.use(cookieParser());   // How the server understands the cookies it receives from users
 app.use(bodyParser.json());     // How the server understands the data it receives from users. Using .json() to understand not only form but also json
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));   // ex : GET/profile 304 - - 2.873ms
 app.use(localsMiddleware);
 // arrived at the route, after going through all the above codes
