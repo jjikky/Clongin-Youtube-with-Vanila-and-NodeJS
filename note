@@ -1,1 +1,13 @@
-npm install webpack webpack-cli
+쿠키 : 우리가 브라우저에 저장할 수 있는 것들
+passport: 쿠키생성, 브라우저에 저장, 유저에게 해당 쿠키를 준다,
+
+npm install passport-local-mongoose
+
+
+passport-local : username과 password를 쓰는 사용자 인증 방식(strategy)
+>> npm i passport passport-local
+
+serializeUser : 어떤 정보를 쿠키에게 주느냐(어떤 field가 쿠키에 포함될 것인지 알려주는 역할)
+                쿠키는 아주 작아야하고 민감한 정보 담으면 안된다. 누군가 접근 가능
+
+deserializeUser : 어느 사용자인지 어떻게 찾는가 (serializeUser에서 받은 쿠키의 정보를 어떻게 사용자로 전환하는가)

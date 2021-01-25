@@ -18,7 +18,7 @@ app.use(function (req, res, next) {                // for get video
 });
 app.set('view engine', "pug");
 app.use("/uploads", express.static("uploads"));
-app.use("/static", express.static("static"));
+//app.use("/static", express.static("static"));
 app.use(cookieParser());   // How the server understands the cookies it receives from users
 app.use(bodyParser.json());     // How the server understands the data it receives from users. Using .json() to understand not only form but also json
 app.use(bodyParser.urlencoded({ extended: true }));
