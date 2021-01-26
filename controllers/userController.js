@@ -41,7 +41,7 @@ export const githubLoginCallback = async (_, __, profile, cb) => { // unused arg
     //console.log(profile, cb);
     try {
         const user = await User.findOne({ email });     // email : email (User with the same email as the email from GitHub)
-        console.log(user);
+        console.log(user);     // show user information
         if (user) {                // Since it was found above, it is a registered user.
             user.githubId = id;      //  So, set the github id to the user's id
             user.avatarUrl = avatarUrl;
