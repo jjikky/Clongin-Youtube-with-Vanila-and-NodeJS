@@ -41,7 +41,7 @@ export const githubLoginCallback = async (_, __, profile, cb) => { // unused arg
     //console.log(profile, cb);
     try {
         const user = await User.findOne({ email });     // email : email (User with the same email as the email from GitHub)
-        console.log(user);     // show user information
+        //console.log(user);     // show user information
         if (user) {                // Since it was found above, it is a registered user.
             user.githubId = id;      //  So, set the github id to the user's id
             user.avatarUrl = avatarUrl;
@@ -83,7 +83,29 @@ export const userDetail = async (req, res) => {
     }
 }
 
-export const editProfile = (req, res) =>
+export const getEditProfile = (req, res) =>
     res.render("editProfile", { pageTitle: "Edit Profile" });
+
+export const postEditProfile = async (req, res) => {
+    console.log(req.file);
+    const {
+        body: { name, email },
+        user: { _id: id },
+        file
+    } = req;
+
+    try {
+        await User.findByIdAndUpdate(id, {
+            name,
+            email,
+            avatarUrl: file ? file.path : req.user.avatarUrl
+        });
+        res.redirect(routes.me);
+    } catch (error) {
+        console.log(error);
+        res.render("editProfile", { pageTitle: "Edit Profile" });
+    }
+};
+
 export const changePassword = (req, res) =>
     res.render("changePassword", { pageTitle: "Change Password" });

@@ -1,0 +1,11 @@
+login 한 상태라면 req는 항상 user를 가지고있다
+
+export const postEditProfile = async (req, res) => {
+    console.log(req.file);
+    const {
+        body: { name, email },
+        user: { _id: id },
+        file
+    } = req; 
+
+    이런식으로 써준뒤 id,email,file등을 가져다 쓰면 된다

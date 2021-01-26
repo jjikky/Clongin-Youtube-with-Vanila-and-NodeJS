@@ -2,14 +2,18 @@ import express from "express";
 import routes from "../routes";
 import {
   userDetail,
-  editProfile,
+  getEditProfile,
+  postEditProfile,
   changePassword
 } from "../controllers/userController";
-import { onlyPrivate } from "../middlewares";
+import { onlyPrivate, uploadAvatar } from "../middlewares";
 
 const userRouter = express.Router();
 
-userRouter.get(routes.editProfile, onlyPrivate, editProfile); // edit profile의 url은 /user/edit-profile
+userRouter.get(routes.editProfile, onlyPrivate, getEditProfile); // edit profile의 url은 /user/edit-profile
+userRouter.post(routes.editProfile, onlyPrivate, uploadAvatar, postEditProfile);
+
+
 userRouter.get(routes.changePassword, onlyPrivate, changePassword);
 userRouter.get(routes.userDetail(), userDetail); // user detail의 url은 /user/:id 여서 디테일이 더 위에 있으면 edit-profile이 id로 인식될 수 있다 주의!!
 
