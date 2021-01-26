@@ -1,5 +1,1 @@
-mongoDB를 사용해서 세션을 저장할거야
-connect-mongo 이용
-session에게 데이터를 MongoStore라는 저장소에 저장하라고 알려줘
-
-npm i connect-mongo
+npm install passport-github
