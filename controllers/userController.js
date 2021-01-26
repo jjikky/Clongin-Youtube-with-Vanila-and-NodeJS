@@ -1,7 +1,6 @@
 import passport from "passport";
 import routes from "../routes";
 import User from "../models/User";
-import { urlencoded } from "body-parser";
 
 export const getJoin = (req, res) => {
     res.render("join", { pageTitle: "Join" });
@@ -38,22 +37,21 @@ export const postLogin = passport.authenticate("local", {
 export const githubLogin = passport.authenticate("github");
 
 export const githubLoginCallback = async (_, __, profile, cb) => { // unused argument  _, __
-    const { _json: { id, avatar_url, name, email } } = profile;
+    const { _json: { id, avatar_url: avatarUrl, name, email } } = profile;
     try {
         const user = await User.findOne({ email });     // email : email (User with the same email as the email from GitHub)
         if (user) {                // Since it was found above, it is a registered user.
             user.githubId = id;      //  So, set the github id to the user's id
             user.save();
             return cb(null, user);
-        } else {                 // Create a new user because he has never signed up
-            const newUser = await User.create({
-                email,
-                name,
-                githubId: id,
-                avartarUrl: avatar_url
-            });
-            return cb(null, newUser);
-        }
+        }                  // Create a new user because he has never signed up
+        const newUser = await User.create({
+            email,
+            name,
+            githubId: id,
+            avatarUrl
+        });
+        return cb(null, newUser);
     } catch (error) {
         return cb(error);
     }
@@ -66,6 +64,10 @@ export const postGithubLogIn = (req, res) => {
 export const logout = (req, res) => {
     req.logout();
     res.redirect(routes.home);
+};
+
+export const getMe = (req, res) => {
+    res.render("userDetail", { pageTitle: "User Detail", user: req.user });
 };
 
 export const userDetail = (req, res) =>

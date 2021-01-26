@@ -19,7 +19,11 @@ const app = express();
 
 const CokieStore = MongoStore(session)
 
-app.use(helmet());        // For security
+app.use(
+    helmet({
+        contentSecurityPolicy: false,
+    })
+);       // For security
 app.use(function (req, res, next) {                // for get video
     res.setHeader("Content-Security-Policy", "script-src 'self' https://archive.org");
     return next();

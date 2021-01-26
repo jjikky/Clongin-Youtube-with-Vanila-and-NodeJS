@@ -6,7 +6,7 @@ const multerVideo = multer({ dest: "uploads/videos/" });
 export const localsMiddleware = (req, res, next) => {
     res.locals.siteName = "WeTube";
     res.locals.routes = routes;                    // add routes to routes.js object
-    res.locals.user = req.user || null;     // if user is not exist >> send null
+    res.locals.loggedUser = req.user || null;     // if loggedUser is not exist >> send null
     next();
 };
 export const onlyPublic = (req, res, next) => { // allow to access only logined
