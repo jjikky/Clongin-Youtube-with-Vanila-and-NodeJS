@@ -1,1 +1,9 @@
 npm install passport-github
+
+
+socialLogin.pug >> 깃허브 로그인 클릭 a(href=routes.gitHub)   >>  "/auth/github";  이동
+globalRouter.get(routes.gitHub, githubLogin);    -- globalRouter.js  
+user.controller에 정의된 githubLogin = passport.authenticate("github"); 에 따라 인증
+passport.js로 가서 userController에서 가져온 githubLoginCallback 실행
+globalRouter에 있는  routes.githubCallback의 "/auth/github/callback"이 경로를 받게되어서 이 라우터가 실행되고
+아래있는 로그인이 실행된후 홈으로 이동
