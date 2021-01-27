@@ -93,7 +93,6 @@ export const postEditProfile = async (req, res) => {
         user: { _id: id },
         file
     } = req;
-
     try {
         await User.findByIdAndUpdate(id, {
             name,
@@ -103,9 +102,28 @@ export const postEditProfile = async (req, res) => {
         res.redirect(routes.me);
     } catch (error) {
         console.log(error);
-        res.render("editProfile", { pageTitle: "Edit Profile" });
+        res.redirect(routes.editProfile);
     }
 };
 
-export const changePassword = (req, res) =>
+export const getChangePassword = (req, res) =>
     res.render("changePassword", { pageTitle: "Change Password" });
+
+export const postChangePassword = async (req, res) => {
+    const {
+        body: { oldPassword, newPassword, newPassword1 }
+    } = req;
+    console.log(oldPassword, newPassword, newPassword1);
+    try {
+        if (newPassword !== newPassword1) {
+            res.status(400);
+            res.redirect(routes.changePassword);
+            return;
+        }
+        await req.user.changePassword(oldPassword, newPassword);
+        res.redirect(routes.me)
+    } catch (error) {
+        res.status(400);
+        res.rendirect(routes.changePassword)
+    }
+}
